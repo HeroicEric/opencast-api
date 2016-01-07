@@ -26,6 +26,8 @@ defmodule Opencast.ConnCase do
 
       import Opencast.Router.Helpers
 
+      import Opencast.Factory
+
       # The default endpoint for testing
       @endpoint Opencast.Endpoint
     end

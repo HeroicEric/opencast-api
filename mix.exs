@@ -17,9 +17,18 @@ defmodule Opencast.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Opencast, []},
-     applications: [:phoenix, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+    [
+      mod: {Opencast, []},
+      applications: [
+        :phoenix,
+        :cowboy,
+        :logger,
+        :phoenix_ecto,
+        :postgrex,
+        :ja_serializer,
+        :ex_machina
+      ]
+  ]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,7 +42,9 @@ defmodule Opencast.Mixfile do
     [{:phoenix, "~> 1.0.4"},
      {:phoenix_ecto, "~> 1.1"},
      {:postgrex, ">= 0.0.0"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:ja_serializer, github: "AgilionApps/ja_serializer"},
+     {:ex_machina, "~> 0.5"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

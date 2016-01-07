@@ -20,6 +20,7 @@ defmodule Opencast.ModelCase do
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
       import Opencast.ModelCase
+      import Opencast.Factory
     end
   end
 
