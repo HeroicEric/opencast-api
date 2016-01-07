@@ -2,10 +2,12 @@ defmodule Opencast.Router do
   use Opencast.Web, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json-api"]
   end
 
-  scope "/api", Opencast do
+  scope "/api/v1", Opencast do
     pipe_through :api
+
+    resources "/podcasts", PodcastController, only: [:index, :show, :create]
   end
 end

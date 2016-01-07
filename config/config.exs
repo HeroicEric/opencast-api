@@ -27,3 +27,6 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: true
+
+# Configure plug to handle JSON API mime type
+config :plug, :mimes, %{"application/vnd.api+json" => ["json-api"]}
