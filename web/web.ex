@@ -18,8 +18,9 @@ defmodule Opencast.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
 
+      import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
@@ -33,7 +34,7 @@ defmodule Opencast.Web do
       use Phoenix.Controller
 
       alias Opencast.Repo
-      import Ecto.Model
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
       import Opencast.Router.Helpers
@@ -48,6 +49,8 @@ defmodule Opencast.Web do
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
       import Opencast.Router.Helpers
+      import Opencast.ErrorHelpers
+      import Opencast.Gettext
     end
   end
 
@@ -62,7 +65,7 @@ defmodule Opencast.Web do
       use Phoenix.Channel
 
       alias Opencast.Repo
-      import Ecto.Model
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
     end
   end

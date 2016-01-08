@@ -6,7 +6,7 @@ defmodule Opencast.Mixfile do
      version: "0.0.1",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix] ++ Mix.compilers,
+     compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
@@ -23,12 +23,13 @@ defmodule Opencast.Mixfile do
         :phoenix,
         :cowboy,
         :logger,
+        :gettext,
         :phoenix_ecto,
         :postgrex,
         :ja_serializer,
         :ex_machina
       ]
-  ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,9 +40,10 @@ defmodule Opencast.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.0.4"},
-     {:phoenix_ecto, "~> 1.1"},
+    [{:phoenix, "~> 1.1.1"},
+     {:phoenix_ecto, "~> 2.0"},
      {:postgrex, ">= 0.0.0"},
+     {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:ja_serializer, github: "AgilionApps/ja_serializer"},
      {:ex_machina, "~> 0.5"}]
