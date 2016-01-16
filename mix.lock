@@ -7,10 +7,10 @@
   "gettext": {:hex, :gettext, "0.9.0"},
   "inflex": {:hex, :inflex, "1.5.0"},
   "ja_serializer": {:git, "https://github.com/AgilionApps/ja_serializer.git", "6c5c6fe5cf894c3a35f2cb294a9df319327f3b61", []},
-  "phoenix": {:hex, :phoenix, "1.1.1"},
+  "phoenix": {:hex, :phoenix, "1.1.2"},
   "phoenix_ecto": {:hex, :phoenix_ecto, "2.0.0"},
-  "plug": {:hex, :plug, "1.0.3"},
-  "poison": {:hex, :poison, "1.5.0"},
+  "plug": {:hex, :plug, "1.1.0"},
+  "poison": {:hex, :poison, "1.5.2"},
   "poolboy": {:hex, :poolboy, "1.5.1"},
   "postgrex": {:hex, :postgrex, "0.10.0"},
   "ranch": {:hex, :ranch, "1.2.0"}}
