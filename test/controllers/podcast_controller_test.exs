@@ -15,7 +15,16 @@ defmodule Opencast.PodcastControllerTest do
 
     assert json_response(conn, 200)["data"] == [
       %{
-        "type" => "podcast",
+        "type" => "podcasts",
+        "relationships" => %{
+          "episodes" => %{
+            "links" => %{
+              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast1)
+            },
+            "data" => []
+          }
+        },
+        "links" => %{"self" => podcast_url(conn, :show, podcast1.id)},
         "id" => podcast1.id,
         "attributes" => %{
           "feed-url" => podcast1.feed_url,
@@ -26,7 +35,16 @@ defmodule Opencast.PodcastControllerTest do
         }
       },
       %{
-        "type" => "podcast",
+        "type" => "podcasts",
+        "relationships" => %{
+          "episodes" => %{
+            "links" => %{
+              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast2)
+            },
+            "data" => []
+          }
+        },
+        "links" => %{"self" => podcast_url(conn, :show, podcast2.id)},
         "id" => podcast2.id,
         "attributes" => %{
           "feed-url" => podcast2.feed_url,
@@ -37,7 +55,16 @@ defmodule Opencast.PodcastControllerTest do
         }
       },
       %{
-        "type" => "podcast",
+        "type" => "podcasts",
+        "relationships" => %{
+          "episodes" => %{
+            "links" => %{
+              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast3)
+            },
+            "data" => []
+          }
+        },
+        "links" => %{"self" => podcast_url(conn, :show, podcast3.id)},
         "id" => podcast3.id,
         "attributes" => %{
           "feed-url" => podcast3.feed_url,
@@ -56,7 +83,16 @@ defmodule Opencast.PodcastControllerTest do
     conn = get conn, podcast_path(conn, :show, podcast)
 
     assert json_response(conn, 200)["data"] == %{
-      "type" => "podcast",
+      "type" => "podcasts",
+      "relationships" => %{
+        "episodes" => %{
+          "links" => %{
+            "related" => podcast_related_episodes_url(conn, :related_episodes, podcast)
+          },
+          "data" => []
+        }
+      },
+      "links" => %{"self" => podcast_url(conn, :show, podcast.id)},
       "id" => podcast.id,
       "attributes" => %{
         "feed-url" => podcast.feed_url,
@@ -74,5 +110,84 @@ defmodule Opencast.PodcastControllerTest do
     assert_raise Ecto.NoResultsError, fn ->
       get conn, podcast_path(conn, :show, -1)
     end
+  end
+
+  test "lists related episodes by published_at", %{conn: conn} do
+    podcast = create(:podcast)
+    old_episode = create(:episode, %{
+      podcast: podcast,
+      published_at: Ecto.DateTime.cast!("2014-01-19T04:23:12Z")
+    })
+    oldest_episode = create(:episode, %{
+      podcast: podcast,
+      published_at: Ecto.DateTime.cast!("2012-01-19T04:23:12Z")
+    })
+    new_episode = create(:episode, %{
+      podcast: podcast,
+      published_at: Ecto.DateTime.cast!("2016-01-19T04:23:12Z")
+    })
+    path = podcast_related_episodes_path(conn, :related_episodes, podcast)
+
+    conn = get conn, path
+
+    assert json_response(conn, 200)["data"] == [
+      %{
+        "type" => "episodes",
+        "relationships" => %{
+          "podcast" => %{
+            "links" => %{
+              "related" => episode_related_podcast_url(conn, :related_podcast, new_episode)
+            },
+            "data" => %{"type" => "podcasts", "id" => new_episode.podcast.id}
+          }
+        },
+        "links" => %{"self" => episode_url(conn, :show, new_episode.id)},
+        "id" => new_episode.id,
+        "attributes" => %{
+          "url" => new_episode.url,
+          "title" => new_episode.title,
+          "description" => new_episode.description,
+          "published-at" => Ecto.DateTime.to_iso8601(new_episode.published_at)
+        }
+      },
+      %{
+        "type" => "episodes",
+        "relationships" => %{
+          "podcast" => %{
+            "links" => %{
+              "related" => episode_related_podcast_url(conn, :related_podcast, old_episode)
+            },
+            "data" => %{"type" => "podcasts", "id" => old_episode.podcast.id}
+          }
+        },
+        "links" => %{"self" => episode_url(conn, :show, old_episode.id)},
+        "id" => old_episode.id,
+        "attributes" => %{
+          "url" => old_episode.url,
+          "title" => old_episode.title,
+          "description" => old_episode.description,
+          "published-at" => Ecto.DateTime.to_iso8601(old_episode.published_at)
+        }
+      },
+      %{
+        "type" => "episodes",
+        "relationships" => %{
+          "podcast" => %{
+            "links" => %{
+              "related" => episode_related_podcast_url(conn, :related_podcast, oldest_episode)
+            },
+            "data" => %{"type" => "podcasts", "id" => oldest_episode.podcast.id}
+          }
+        },
+        "links" => %{"self" => episode_url(conn, :show, oldest_episode.id)},
+        "id" => oldest_episode.id,
+        "attributes" => %{
+          "url" => oldest_episode.url,
+          "title" => oldest_episode.title,
+          "description" => oldest_episode.description,
+          "published-at" => Ecto.DateTime.to_iso8601(oldest_episode.published_at)
+        }
+      }
+    ]
   end
 end

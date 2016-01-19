@@ -12,6 +12,8 @@ defmodule Opencast.Router do
       get "/podcast", EpisodeController, :related_podcast, as: :related_podcast
     end
 
-    resources "/podcasts", PodcastController, only: [:index, :show]
+    resources "/podcasts", PodcastController, only: [:index, :show] do
+      get "/episodes", PodcastController, :related_episodes, as: :related_episodes
+    end
   end
 end
