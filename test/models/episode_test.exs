@@ -6,7 +6,7 @@ defmodule Opencast.EpisodeTest do
 
   @valid_attrs %{
     podcast_id: "6add86ec-187a-4b8a-ba8d-9208c2fb9cdf",
-    published_at: "2016-01-19 03:52:44",
+    published_at: "2016-01-19 03:52:44Z",
     title: "Some Episode",
     url: "http://example.com"
   }
