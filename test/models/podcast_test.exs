@@ -34,7 +34,7 @@ defmodule Opencast.PodcastTest do
     assert {:title, "can't be blank"} in changeset.errors
   end
 
-  test "changeset with duplicate feed_url" do
+  test "changeset requires unique feed_url" do
     create(:podcast, %{feed_url: "http://example.com"})
 
     {:error, changeset} = %Podcast{}

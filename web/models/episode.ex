@@ -1,20 +1,19 @@
-defmodule Opencast.Podcast do
+defmodule Opencast.Episode do
   use Opencast.Web, :model
 
-  schema "podcasts" do
-    has_many :episodes, Opencast.Episode
+  schema "episodes" do
+    belongs_to :podcast, Opencast.Podcast
 
     field :description, :string
-    field :feed_url, :string
-    field :image_url, :string
-    field :link, :string
+    field :published_at, Ecto.DateTime
     field :title, :string
+    field :url, :string
 
     timestamps
   end
 
-  @required_fields ~w(description feed_url link title)
-  @optional_fields ~w(image_url)
+  @required_fields ~w(published_at title url podcast_id)
+  @optional_fields ~w(description)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -25,6 +24,7 @@ defmodule Opencast.Podcast do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:feed_url)
+    |> unique_constraint(:url)
+    |> foreign_key_constraint(:podcast_id)
   end
 end
