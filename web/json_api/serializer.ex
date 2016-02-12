@@ -46,8 +46,7 @@ defmodule JSONAPI.Serializer do
       end
 
       defp build_doc(_) do
-        config = %{config: %{includes: []}}
-        document = JSONAPI.Document.new(
+        %{config: %{includes: []}}
       end
 
       defp parse_include(""), do: []
