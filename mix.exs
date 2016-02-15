@@ -49,6 +49,7 @@ defmodule Opencast.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ja_serializer, github: "AgilionApps/ja_serializer"},
      {:ex_machina, "~> 0.5"},
+     {:sweet_xml, "~> 0.5.0"},
      {:excoveralls, "~> 0.4", only: :test}]
   end
 
