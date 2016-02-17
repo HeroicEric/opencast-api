@@ -2,13 +2,14 @@ defmodule Audrey.RSS.Channel do
   import SweetXml
   import Audrey.Util, only: [format_value: 1]
 
-  defstruct [:title, :link, :description, items: []]
+  defstruct [:title, :link, :description, image: %{}, items: []]
 
   def parse(xml) do
     %Audrey.RSS.Channel{
       title: parse_title(xml),
       link: parse_link(xml),
       description: parse_description(xml),
+      image: parse_image(xml),
       items: parse_items(xml)
     }
   end
@@ -23,6 +24,10 @@ defmodule Audrey.RSS.Channel do
 
   defp parse_description(xml) do
     xml |> xpath(~x"./description/text()"s) |> format_value
+  end
+
+  defp parse_image(xml) do
+    xml |> xpath(~x"./image") |> Audrey.RSS.Image.parse
   end
 
   defp parse_items(xml) do
