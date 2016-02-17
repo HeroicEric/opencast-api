@@ -6,9 +6,14 @@ defmodule Audrey.RSS.ChannelTest do
   def channel_xml_basic do
     """
     <channel>
-      <title>JavaScript Fatigue</title>
-      <link>http://jsfatigue.com/</link>
-      <description>Too many tools. Too little time.</description>
+      <title>Ember Weekend</title>
+      <link>https://emberweekend.com/</link>
+      <description>Ember is a JavaScript framework</description>
+      <image>
+        <url>https://emberweekend.com/tomster.png</url>
+        <title>Ember Weekend</title>
+        <link>https://emberweekend.com</link>
+      </image>
       <item><title>Ember</title></item>
       <item><title>Angular</title></item>
       <item><title>React</title></item>
@@ -18,17 +23,26 @@ defmodule Audrey.RSS.ChannelTest do
 
   test "parses the title" do
     channel = channel_xml_basic |> parse
-    assert channel.title == "JavaScript Fatigue"
+    assert channel.title == "Ember Weekend"
   end
 
   test "parses the link" do
     channel = channel_xml_basic |> parse
-    assert channel.link == "http://jsfatigue.com/"
+    assert channel.link == "https://emberweekend.com/"
   end
 
   test "parses the description" do
     channel = channel_xml_basic |> parse
-    assert channel.description == "Too many tools. Too little time."
+    assert channel.description == "Ember is a JavaScript framework"
+  end
+
+  test "parses the image" do
+    channel = channel_xml_basic |> parse
+    assert channel.image == %Audrey.RSS.Image{
+      url: "https://emberweekend.com/tomster.png",
+      title: "Ember Weekend",
+      link: "https://emberweekend.com"
+    }
   end
 
   test "parses items" do
