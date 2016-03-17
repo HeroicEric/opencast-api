@@ -8,6 +8,6 @@ defmodule Audrey.Feed do
   end
 
   defp parse_channel(xml) do
-    xml |> xpath(~x"//channel") |> Audrey.RSS.Channel.parse
+    xml |> xpath(~x"//channel") |> Audrey.Channel.parse
   end
 end

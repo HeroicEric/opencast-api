@@ -1,7 +1,7 @@
-defmodule Audrey.RSS.ItemTest do
+defmodule Audrey.ItemTest do
   use ExUnit.Case, async: true
 
-  import Audrey.RSS.Item
+  import Audrey.Item
 
   def item_xml_basic do
     """
