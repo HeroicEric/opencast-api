@@ -1,7 +1,7 @@
-defmodule Audrey.RSS.ChannelTest do
+defmodule Audrey.ChannelTest do
   use ExUnit.Case, async: true
 
-  import Audrey.RSS.Channel
+  import Audrey.Channel
 
   def channel_xml_basic do
     """
@@ -21,24 +21,24 @@ defmodule Audrey.RSS.ChannelTest do
     """
   end
 
-  test "parses the title" do
+  test "parse/1: parses the title" do
     channel = channel_xml_basic |> parse
     assert channel.title == "Ember Weekend"
   end
 
-  test "parses the link" do
+  test "parse/1: parses the link" do
     channel = channel_xml_basic |> parse
     assert channel.link == "https://emberweekend.com/"
   end
 
-  test "parses the description" do
+  test "parse/1: parses the description" do
     channel = channel_xml_basic |> parse
     assert channel.description == "Ember is a JavaScript framework"
   end
 
-  test "parses the image" do
+  test "parse/1: parses the image" do
     channel = channel_xml_basic |> parse
-    assert channel.image == %Audrey.RSS.Image{
+    assert channel.image == %Audrey.Image{
       url: "https://emberweekend.com/tomster.png",
       title: "Ember Weekend",
       link: "https://emberweekend.com"

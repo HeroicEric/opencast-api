@@ -1,13 +1,13 @@
-defmodule Audrey.RSS.Image do
+defmodule Audrey.Image do
   import SweetXml
   import Audrey.Util, only: [format_value: 1]
 
   defstruct [:url, :title, :link]
 
-  def parse(nil), do: %Audrey.RSS.Image{}
+  def parse(nil), do: nil
 
   def parse(xml) do
-    %Audrey.RSS.Image{
+    %Audrey.Image{
       url: parse_url(xml),
       title: parse_title(xml),
       link: parse_link(xml)

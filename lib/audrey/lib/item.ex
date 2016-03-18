@@ -1,11 +1,11 @@
-defmodule Audrey.RSS.Item do
+defmodule Audrey.Item do
   import SweetXml
   import Audrey.Util, only: [format_value: 1]
 
   defstruct [:title, :link, :description, :pub_date]
 
   def parse(xml) do
-    %Audrey.RSS.Item{
+    %Audrey.Item{
       title: parse_title(xml),
       link: parse_link(xml),
       description: parse_description(xml),

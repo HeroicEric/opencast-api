@@ -1,7 +1,7 @@
-defmodule Audrey.RSS.ImageTest do
+defmodule Audrey.ImageTest do
   use ExUnit.Case, async: true
 
-  import Audrey.RSS.Image
+  import Audrey.Image
 
   def image_xml_basic do
     """
