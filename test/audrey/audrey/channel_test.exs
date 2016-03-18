@@ -44,11 +44,4 @@ defmodule Audrey.ChannelTest do
       link: "https://emberweekend.com"
     }
   end
-
-  test "parses items" do
-    channel = channel_xml_basic |> parse
-    item_titles = Enum.map(channel.items, &Map.get(&1, :title))
-
-    assert item_titles == ["Ember", "Angular", "React"]
-  end
 end
