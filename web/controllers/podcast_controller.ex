@@ -6,7 +6,10 @@ defmodule Opencast.PodcastController do
   alias Opencast.Podcast
 
   def index(conn, _params) do
-    podcasts = Repo.all(Podcast) |> Repo.preload(:episodes)
+    podcasts =
+      from(p in Podcast, limit: 10)
+      |> Repo.all
+      |> Repo.preload([:episodes, episodes: :podcast])
     render(conn, "index.json", podcasts: podcasts)
   end
 

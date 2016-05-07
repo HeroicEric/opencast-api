@@ -29,7 +29,8 @@ defmodule Opencast.Mixfile do
         :phoenix_ecto,
         :postgrex,
         :ja_serializer,
-        :ex_machina
+        :ex_machina,
+        :httpoison
       ]
     ]
   end
@@ -50,7 +51,9 @@ defmodule Opencast.Mixfile do
      {:ja_serializer, github: "AgilionApps/ja_serializer"},
      {:ex_machina, "~> 0.5"},
      {:sweet_xml, "~> 0.5.0"},
-     {:excoveralls, "~> 0.4", only: :test}]
+     {:httpoison, "~> 0.8.0"},
+     {:excoveralls, "~> 0.4", only: :test},
+     {:mock, "~> 0.1.1", only: :test}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

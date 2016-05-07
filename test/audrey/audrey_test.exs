@@ -13,8 +13,11 @@ defmodule AudreyTest do
     assert_raise RuntimeError, fn -> parse!(xml) end
   end
 
-  test "has a channel" do
+  test "parse/1: chas a channel" do
     {:ok, feed} = File.read!("test/audrey/fixtures/rss2.xml") |> parse
     assert feed.channel
   end
+
+  # test "fetch/1: returns parsed feed from given `url`" do
+  # end
 end
