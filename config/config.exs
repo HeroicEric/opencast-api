@@ -28,5 +28,7 @@ config :phoenix, :generators,
   migration: true,
   binary_id: true
 
+config :phoenix, :format_encoders, "json-api": Poison
+
 # Configure plug to handle JSON API mime type
 config :plug, :mimes, %{"application/vnd.api+json" => ["json-api"]}

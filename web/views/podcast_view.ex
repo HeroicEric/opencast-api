@@ -26,6 +26,5 @@ defmodule Opencast.PodcastView do
 
   def related_episodes_link(podcast, conn) do
     podcast_related_episodes_url(conn, :related_episodes, podcast.id)
-    # self: episode_related_podcast_url(conn, :related_podcast, episode.id)
   end
 end

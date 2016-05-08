@@ -72,6 +72,23 @@ defmodule Opencast.EpisodeControllerTest do
     ]
   end
 
+  test "index: is paginated", %{conn: conn} do
+    podcast = create(:podcast)
+    create_list(5, :episode, podcast: podcast)
+
+    conn = get conn, episode_path(conn, :index, page: %{"page" => 2, "page-size" => 1})
+    response = json_response(conn, 200)
+
+    assert length(response["data"]) == 1
+    assert response["links"] == %{
+      "self" => episode_path(conn, :index, page: %{"page" => 2, "page-size" => 1}),
+      "prev" => episode_path(conn, :index, page: %{"page" => 1, "page-size" => 1}),
+      "next" => episode_path(conn, :index, page: %{"page" => 3, "page-size" => 1}),
+      "last" => episode_path(conn, :index, page: %{"page" => 5, "page-size" => 1}),
+      "first" => episode_path(conn, :index, page: %{"page" => 1, "page-size" => 1})
+    }
+  end
+
   test "shows chosen resource", %{conn: conn} do
     episode = create(:episode)
 
