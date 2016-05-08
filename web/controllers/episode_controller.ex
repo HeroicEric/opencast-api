@@ -7,11 +7,11 @@ defmodule Opencast.EpisodeController do
   alias Opencast.PodcastView
 
   def index(conn, params) do
-    page =
+    episodes =
       from(e in Episode, preload: [:podcast])
-      |> Repo.paginate(params)
+      |> Repo.paginate(Map.get(params, "page", %{}))
 
-    render(conn, "index.json", data: page.entries)
+    render(conn, "index.json", data: episodes)
   end
 
   def show(conn, %{"id" => id}) do
