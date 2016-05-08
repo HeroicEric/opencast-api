@@ -1,13 +1,18 @@
 defmodule Opencast.PodcastController do
   use Opencast.Web, :controller
 
+  import Ecto.Query, only: [from: 2]
+
   alias Opencast.Episode
   alias Opencast.EpisodeView
   alias Opencast.Podcast
 
-  def index(conn, _params) do
-    podcasts = Repo.all(Podcast) |> Repo.preload(:episodes)
-    render(conn, "index.json", data: podcasts)
+  def index(conn, params) do
+    page =
+      from(p in Podcast, preload: [:episodes])
+      |> Repo.paginate(params)
+
+    render(conn, "index.json", data: page.entries)
   end
 
   def show(conn, %{"id" => id}) do

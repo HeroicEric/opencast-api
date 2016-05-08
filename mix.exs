@@ -50,7 +50,8 @@ defmodule Opencast.Mixfile do
      {:ja_serializer, github: "AgilionApps/ja_serializer"},
      {:ex_machina, "~> 0.5"},
      {:sweet_xml, "~> 0.5.0"},
-     {:excoveralls, "~> 0.4", only: :test}]
+     {:excoveralls, "~> 0.4", only: :test},
+     {:scrivener, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
