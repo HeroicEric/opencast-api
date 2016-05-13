@@ -93,6 +93,21 @@ defmodule Opencast.PodcastControllerTest do
     }
   end
 
+  test "index: is filterable", %{conn: conn} do
+    insert(:podcast, %{title: "Bear Soup"})
+    insert(:podcast, %{title: "Lentil Soup"})
+    insert(:podcast, %{title: "Bear Attack"})
+
+    conn = get conn, podcast_path(conn, :index, filter: %{"query" => "soup"})
+    response = json_response(conn, 200)
+
+    titles = Enum.map(response["data"], fn(podcast) ->
+      get_in(podcast, ["attributes", "title"])
+    end)
+
+    assert titles == ["Bear Soup", "Lentil Soup"]
+  end
+
   test "shows chosen resource", %{conn: conn} do
     podcast = insert(:podcast)
 

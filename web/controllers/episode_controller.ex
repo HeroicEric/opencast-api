@@ -4,6 +4,7 @@ defmodule Opencast.EpisodeController do
   import Ecto.Query, only: [from: 2]
 
   alias Opencast.Episode
+  alias Opencast.Podcast
   alias Opencast.PodcastView
 
   def index(conn, params) do
@@ -20,10 +21,14 @@ defmodule Opencast.EpisodeController do
   end
 
   def related_podcast(conn, %{"episode_id" => episode_id}) do
-    episode =
-      Repo.get!(Episode, episode_id)
-      |> Repo.preload([:podcast, podcast: :episodes])
+    episode = Repo.get!(Episode, episode_id)
 
-    render(conn, PodcastView, "show.json-api", data: episode.podcast)
+    podcast =
+      from(p in Podcast,
+        where: p.id == ^episode.podcast_id,
+        preload: [:episodes, episodes: :podcast])
+      |> Repo.one
+
+    render(conn, PodcastView, "show.json-api", data: podcast)
   end
 end
