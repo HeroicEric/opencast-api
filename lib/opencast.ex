@@ -11,8 +11,8 @@ defmodule Opencast do
       supervisor(Opencast.Endpoint, []),
       # Start the Ecto repository
       worker(Opencast.Repo, []),
-      # Here you could define other workers and supervisors as children
-      # worker(Opencast.Worker, [arg1, arg2, arg3]),
+      # Start global Redix (Redis) instance
+      worker(Redix, [Application.get_env(:redix, :redis_url), [name: :redix]])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
