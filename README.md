@@ -20,7 +20,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
 
-[build-status-badge]: https://travis-ci.org/HeroicEric/opencast_api.svg?branch=master "Build Status badge"
-[build-status-url]: https://travis-ci.org/HeroicEric/opencast_api "Build Status"
-[coverage-status-badge]: https://coveralls.io/repos/github/HeroicEric/opencast_api/badge.svg?branch=master "Coverage Status badge"
-[coverage-status-url]: https://coveralls.io/github/HeroicEric/opencast_api?branch=master "Coverage Status"
+[build-status-badge]: https://travis-ci.org/HeroicEric/opencast-api.svg?branch=master "Build Status badge"
+[build-status-url]: https://travis-ci.org/HeroicEric/opencast-api "Build Status"
+[coverage-status-badge]: https://coveralls.io/repos/github/HeroicEric/opencast-api/badge.svg?branch=master "Coverage Status badge"
+[coverage-status-url]: https://coveralls.io/github/HeroicEric/opencast-api?branch=master "Coverage Status"
+
