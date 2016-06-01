@@ -3,8 +3,7 @@ defmodule JSONAPI.DocumentTest do
 
   import JSONAPI.Document
 
-  # test "parses the title" do
-  #   channel = channel_xml_basic |> parse
-  #   assert channel.title == "Ember Weekend"
-  # end
+  test "build/0: returns a new JSON API Document" do
+    assert build == %JSONAPI.Document{}
+  end
 end

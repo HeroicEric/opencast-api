@@ -15,7 +15,7 @@ defmodule JSONAPI.ResourceObject do
     new_attributes =
       resource_object
       |> Map.get(:attributes)
-      |> Map.put(dasherize(key), Map.get(data, key))
+      |> Map.put(key, Map.get(data, key))
 
     %{resource_object | attributes: new_attributes}
   end
