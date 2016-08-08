@@ -24,8 +24,10 @@ defmodule Opencast.ModelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Opencast.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Opencast.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(Opencast.Repo, {:shared, self()})
     end
 
     :ok
@@ -45,15 +47,16 @@ defmodule Opencast.ModelCase do
   You could then write your assertion like:
 
       assert {:password, "is unsafe"} in errors_on(%User{}, %{password: "password"})
-
-  You can also create the changeset manually and retrieve the errors
-  field directly:
-
-      iex> changeset = User.changeset(%User{}, password: "password")
-      iex> {:password, "is unsafe"} in changeset.errors
-      true
   """
-  def errors_on(model, data) do
-    model.__struct__.changeset(model, data).errors
+  def errors_on(struct, data) do
+    struct.__struct__.changeset(struct, data)
+    |> Ecto.Changeset.traverse_errors(&Opencast.ErrorHelpers.translate_error/1)
+    |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
+  end
+
+  def errors_on_changeset(changeset) do
+    changeset
+    |> Ecto.Changeset.traverse_errors(&Opencast.ErrorHelpers.translate_error/1)
+    |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :opencast, ecto_repos: [Opencast.Repo]
+
 # Configures the endpoint
 config :opencast, Opencast.Endpoint,
   url: [host: "localhost"],

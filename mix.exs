@@ -23,6 +23,7 @@ defmodule Opencast.Mixfile do
       mod: {Opencast, []},
       applications: [
         :phoenix,
+        :phoenix_pubsub,
         :cowboy,
         :logger,
         :gettext,
@@ -42,16 +43,18 @@ defmodule Opencast.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.2"},
-     {:phoenix_ecto, "~> 2.0"},
+    [{:phoenix, "~> 1.2.0"},
+     {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_ecto, "~> 3.0-rc"},
      {:postgrex, ">= 0.11.1"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:ja_serializer, github: "AgilionApps/ja_serializer"},
-     {:ex_machina, "~> 0.5"},
+     {:ja_serializer, "~> 0.10.1"},
+     {:ex_machina, "~> 1.0.2"},
      {:sweet_xml, "~> 0.5.0"},
      {:excoveralls, "~> 0.4", only: :test},
-     {:scrivener, "~> 1.0"}]
+     {:scrivener, "~> 2.0"},
+     {:scrivener_ecto, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

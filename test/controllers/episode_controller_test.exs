@@ -2,12 +2,12 @@ defmodule Opencast.EpisodeControllerTest do
   use Opencast.ConnCase
 
   setup do
-    conn = conn() |> put_req_header("accept", "application/vnd.api+json")
+    conn = build_conn() |> put_req_header("accept", "application/vnd.api+json")
     {:ok, conn: conn}
   end
 
   test "lists all entries on index", %{conn: conn} do
-    [episode1, episode2, episode3] = create_list(3, :episode)
+    [episode1, episode2, episode3] = insert_list(3, :episode)
 
     conn = get conn, episode_path(conn, :index)
 
@@ -73,8 +73,8 @@ defmodule Opencast.EpisodeControllerTest do
   end
 
   test "index: is paginated", %{conn: conn} do
-    podcast = create(:podcast)
-    create_list(5, :episode, podcast: podcast)
+    podcast = insert(:podcast)
+    insert_list(5, :episode, podcast: podcast)
 
     conn = get conn, episode_path(conn, :index, page: %{"page" => 2, "page-size" => 1})
     response = json_response(conn, 200)
@@ -90,7 +90,7 @@ defmodule Opencast.EpisodeControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    episode = create(:episode)
+    episode = insert(:episode)
 
     conn = get conn, episode_path(conn, :show, episode)
 
@@ -124,7 +124,7 @@ defmodule Opencast.EpisodeControllerTest do
   end
 
   test "shows related podcast", %{conn: conn} do
-    episode = create(:episode)
+    episode = insert(:episode)
     podcast = episode.podcast
     path = episode_related_podcast_path(conn, :related_podcast, episode)
 

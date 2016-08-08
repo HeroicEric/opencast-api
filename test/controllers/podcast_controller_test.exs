@@ -2,14 +2,14 @@ defmodule Opencast.PodcastControllerTest do
   use Opencast.ConnCase
 
   setup do
-    conn = conn() |> put_req_header("accept", "application/vnd.api+json")
+    conn = build_conn() |> put_req_header("accept", "application/vnd.api+json")
     {:ok, conn: conn}
   end
 
   test "lists all entries on index", %{conn: conn} do
-    podcast1 = create(:podcast)
-    podcast2 = create(:podcast)
-    podcast3 = create(:podcast)
+    podcast1 = insert(:podcast)
+    podcast2 = insert(:podcast)
+    podcast3 = insert(:podcast)
 
     conn = get conn, podcast_path(conn, :index)
 
@@ -78,7 +78,7 @@ defmodule Opencast.PodcastControllerTest do
   end
 
   test "index: is paginated", %{conn: conn} do
-    create_list(5, :podcast)
+    insert_list(5, :podcast)
 
     conn = get conn, podcast_path(conn, :index, page: %{"page" => 2, "page-size" => 1})
     response = json_response(conn, 200)
@@ -94,7 +94,7 @@ defmodule Opencast.PodcastControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    podcast = create(:podcast)
+    podcast = insert(:podcast)
 
     conn = get conn, podcast_path(conn, :show, podcast)
 
@@ -129,16 +129,16 @@ defmodule Opencast.PodcastControllerTest do
   end
 
   test "lists related episodes by published_at", %{conn: conn} do
-    podcast = create(:podcast)
-    old_episode = create(:episode, %{
+    podcast = insert(:podcast)
+    old_episode = insert(:episode, %{
       podcast: podcast,
       published_at: Ecto.DateTime.cast!("2014-01-19T04:23:12Z")
     })
-    oldest_episode = create(:episode, %{
+    oldest_episode = insert(:episode, %{
       podcast: podcast,
       published_at: Ecto.DateTime.cast!("2012-01-19T04:23:12Z")
     })
-    new_episode = create(:episode, %{
+    new_episode = insert(:episode, %{
       podcast: podcast,
       published_at: Ecto.DateTime.cast!("2016-01-19T04:23:12Z")
     })
