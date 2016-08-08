@@ -4,7 +4,7 @@ defmodule Opencast.Factory do
   alias Opencast.Episode
   alias Opencast.Podcast
 
-  def factory(:episode) do
+  def episode_factory do
     %Episode{
       podcast: build(:podcast),
       published_at: Ecto.DateTime.utc(),
@@ -13,7 +13,7 @@ defmodule Opencast.Factory do
     }
   end
 
-  def factory(:podcast) do
+  def podcast_factory do
     %Podcast{
       description: sequence(:description, &"This podcast is really awesome##{&1}"),
       feed_url: sequence(:feed_url, &"http://example#{&1}.com/rss"),
