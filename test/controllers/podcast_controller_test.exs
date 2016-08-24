@@ -175,7 +175,7 @@ defmodule Opencast.PodcastControllerTest do
         "links" => %{"self" => episode_url(conn, :show, new_episode.id)},
         "id" => new_episode.id,
         "attributes" => %{
-          "url" => new_episode.url,
+          "link" => new_episode.link,
           "title" => new_episode.title,
           "description" => new_episode.description,
           "published-at" => Ecto.DateTime.to_iso8601(new_episode.published_at)
@@ -194,7 +194,7 @@ defmodule Opencast.PodcastControllerTest do
         "links" => %{"self" => episode_url(conn, :show, old_episode.id)},
         "id" => old_episode.id,
         "attributes" => %{
-          "url" => old_episode.url,
+          "link" => old_episode.link,
           "title" => old_episode.title,
           "description" => old_episode.description,
           "published-at" => Ecto.DateTime.to_iso8601(old_episode.published_at)
@@ -213,7 +213,7 @@ defmodule Opencast.PodcastControllerTest do
         "links" => %{"self" => episode_url(conn, :show, oldest_episode.id)},
         "id" => oldest_episode.id,
         "attributes" => %{
-          "url" => oldest_episode.url,
+          "link" => oldest_episode.link,
           "title" => oldest_episode.title,
           "description" => oldest_episode.description,
           "published-at" => Ecto.DateTime.to_iso8601(oldest_episode.published_at)

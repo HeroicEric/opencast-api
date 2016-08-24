@@ -5,14 +5,14 @@ defmodule Opencast.Episode do
     belongs_to :podcast, Opencast.Podcast
 
     field :description, :string
+    field :link, :string
     field :published_at, Ecto.DateTime
     field :title, :string
-    field :url, :string
 
     timestamps
   end
 
-  @required_fields ~w(published_at title url podcast_id)
+  @required_fields ~w(published_at link title podcast_id)
   @optional_fields ~w(description)
 
   @doc """
@@ -24,7 +24,7 @@ defmodule Opencast.Episode do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:url)
+    |> unique_constraint(:link)
     |> foreign_key_constraint(:podcast_id)
   end
 end

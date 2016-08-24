@@ -25,7 +25,7 @@ defmodule Opencast.EpisodeControllerTest do
         "links" => %{"self" => episode_url(conn, :show, episode1.id)},
         "id" => episode1.id,
         "attributes" => %{
-          "url" => episode1.url,
+          "link" => episode1.link,
           "title" => episode1.title,
           "description" => episode1.description,
           "published-at" => Ecto.DateTime.to_iso8601(episode1.published_at)
@@ -44,7 +44,7 @@ defmodule Opencast.EpisodeControllerTest do
         "links" => %{"self" => episode_url(conn, :show, episode2.id)},
         "id" => episode2.id,
         "attributes" => %{
-          "url" => episode2.url,
+          "link" => episode2.link,
           "title" => episode2.title,
           "description" => episode2.description,
           "published-at" => Ecto.DateTime.to_iso8601(episode2.published_at)
@@ -63,7 +63,7 @@ defmodule Opencast.EpisodeControllerTest do
         "links" => %{"self" => episode_url(conn, :show, episode3.id)},
         "id" => episode3.id,
         "attributes" => %{
-          "url" => episode3.url,
+          "link" => episode3.link,
           "title" => episode3.title,
           "description" => episode3.description,
           "published-at" => Ecto.DateTime.to_iso8601(episode3.published_at)
@@ -107,7 +107,7 @@ defmodule Opencast.EpisodeControllerTest do
       "links" => %{"self" => episode_url(conn, :show, episode.id)},
       "id" => episode.id,
       "attributes" => %{
-        "url" => episode.url,
+        "link" => episode.link,
         "title" => episode.title,
         "description" => episode.description,
         "published-at" => Ecto.DateTime.to_iso8601(episode.published_at)
