@@ -10,7 +10,8 @@ defmodule Opencast.PodcastView do
     serializer: Opencast.EpisodeView,
     links: [
       related: :related_episodes_link
-    ]
+    ],
+    include: true
 
   attributes [
     :feed_url,
