@@ -8,7 +8,7 @@ defmodule Opencast.Factory do
     %Episode{
       podcast: build(:podcast),
       published_at: Ecto.DateTime.utc(),
-      url: sequence(:feed_url, &"http://example#{&1}.com/rss"),
+      link: sequence(:link, &"http://example#{&1}.com/rss"),
       title: sequence(:title, &"Awesome Episode ##{&1}")
     }
   end

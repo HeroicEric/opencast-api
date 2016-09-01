@@ -14,9 +14,9 @@ defmodule Opencast.EpisodeView do
 
   attributes [
     :description,
+    :link,
     :published_at,
-    :title,
-    :url
+    :title
   ]
 
   def location(episode, conn) do
