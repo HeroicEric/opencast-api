@@ -19,4 +19,8 @@ defmodule Opencast.EpisodeView do
     :title
   ]
 
+  def description(%{description: nil}, _), do: nil
+  def description(%{description: description}, _) do
+    HtmlSanitizeEx.basic_html(description)
+  end
 end
