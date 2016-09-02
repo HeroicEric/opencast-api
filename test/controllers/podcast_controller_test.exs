@@ -19,9 +19,8 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "episodes" => %{
             "links" => %{
-              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast1)
-            },
-            "data" => []
+              "related" => podcast_related_episodes_path(conn, :related_episodes, podcast1)
+            }
           }
         },
         "links" => %{"self" => podcast_url(conn, :show, podcast1.id)},
@@ -39,9 +38,8 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "episodes" => %{
             "links" => %{
-              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast2)
-            },
-            "data" => []
+              "related" => podcast_related_episodes_path(conn, :related_episodes, podcast2)
+            }
           }
         },
         "links" => %{"self" => podcast_url(conn, :show, podcast2.id)},
@@ -59,9 +57,8 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "episodes" => %{
             "links" => %{
-              "related" => podcast_related_episodes_url(conn, :related_episodes, podcast3)
-            },
-            "data" => []
+              "related" => podcast_related_episodes_path(conn, :related_episodes, podcast3)
+            }
           }
         },
         "links" => %{"self" => podcast_url(conn, :show, podcast3.id)},
@@ -118,9 +115,8 @@ defmodule Opencast.PodcastControllerTest do
       "relationships" => %{
         "episodes" => %{
           "links" => %{
-            "related" => podcast_related_episodes_url(conn, :related_episodes, podcast)
-          },
-          "data" => []
+            "related" => podcast_related_episodes_path(conn, :related_episodes, podcast)
+          }
         }
       },
       "links" => %{"self" => podcast_url(conn, :show, podcast.id)},

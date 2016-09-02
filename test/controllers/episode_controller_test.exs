@@ -135,9 +135,8 @@ defmodule Opencast.EpisodeControllerTest do
       "relationships" => %{
         "episodes" => %{
           "links" => %{
-            "related" => podcast_related_episodes_url(conn, :related_episodes, podcast)
-          },
-          "data" => [%{"type" => "episodes", "id" => episode.id}]
+            "related" => podcast_related_episodes_path(conn, :related_episodes, podcast)
+          }
         }
       },
       "links" => %{"self" => podcast_url(conn, :show, podcast.id)},

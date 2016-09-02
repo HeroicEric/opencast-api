@@ -9,7 +9,7 @@ defmodule Opencast.PodcastController do
 
   def index(conn, params) do
     podcasts =
-      from(p in Podcast, preload: [:episodes, episodes: [:podcast]])
+      Podcast
       |> Opencast.PodcastQuery.filter(params)
       |> Repo.paginate(Map.get(params, "page", %{}))
 
@@ -17,9 +17,7 @@ defmodule Opencast.PodcastController do
   end
 
   def show(conn, %{"id" => id}) do
-    podcast =
-      Repo.get!(Podcast, id)
-      |> Repo.preload([:episodes, episodes: :podcast])
+    podcast = Repo.get!(Podcast, id)
 
     render(conn, "show.json-api", data: podcast)
   end
@@ -31,6 +29,6 @@ defmodule Opencast.PodcastController do
         order_by: [desc: :published_at],
         preload: [:podcast]
 
-    render(conn, EpisodeView, "show.json-api", data: episodes)
+    render(conn, EpisodeView, "index.json-api", data: episodes)
   end
 end
