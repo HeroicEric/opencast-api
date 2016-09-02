@@ -51,7 +51,7 @@ defmodule Opencast.Mixfile do
       {:postgrex, ">= 0.11.1"},
       {:gettext, "~> 0.9"},
       {:cowboy, "~> 1.0"},
-      {:ja_serializer, "~> 0.10.1"},
+      {:ja_serializer, "~> 0.11.0"},
       {:ex_machina, "~> 1.0.2"},
       {:sweet_xml, "~> 0.5.0"},
       {:excoveralls, "~> 0.4", only: :test},
