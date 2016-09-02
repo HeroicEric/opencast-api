@@ -4,7 +4,7 @@ defmodule Opencast.PodcastView do
 
   def type, do: "podcasts"
 
-  location :location
+  location "/api/v1/podcasts/:id"
 
   has_many :episodes,
     serializer: Opencast.EpisodeView,
@@ -19,12 +19,4 @@ defmodule Opencast.PodcastView do
     :description,
     :title
   ]
-
-  def location(podcast, conn) do
-    podcast_url(conn, :show, podcast)
-  end
-
-  def related_episodes_link(podcast, conn) do
-    podcast_related_episodes_url(conn, :related_episodes, podcast.id)
-  end
 end

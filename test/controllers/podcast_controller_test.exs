@@ -23,7 +23,7 @@ defmodule Opencast.PodcastControllerTest do
             }
           }
         },
-        "links" => %{"self" => podcast_url(conn, :show, podcast1.id)},
+        "links" => %{"self" => podcast_path(conn, :show, podcast1.id)},
         "id" => podcast1.id,
         "attributes" => %{
           "feed-url" => podcast1.feed_url,
@@ -42,7 +42,7 @@ defmodule Opencast.PodcastControllerTest do
             }
           }
         },
-        "links" => %{"self" => podcast_url(conn, :show, podcast2.id)},
+        "links" => %{"self" => podcast_path(conn, :show, podcast2.id)},
         "id" => podcast2.id,
         "attributes" => %{
           "feed-url" => podcast2.feed_url,
@@ -61,7 +61,7 @@ defmodule Opencast.PodcastControllerTest do
             }
           }
         },
-        "links" => %{"self" => podcast_url(conn, :show, podcast3.id)},
+        "links" => %{"self" => podcast_path(conn, :show, podcast3.id)},
         "id" => podcast3.id,
         "attributes" => %{
           "feed-url" => podcast3.feed_url,
@@ -119,7 +119,7 @@ defmodule Opencast.PodcastControllerTest do
           }
         }
       },
-      "links" => %{"self" => podcast_url(conn, :show, podcast.id)},
+      "links" => %{"self" => podcast_path(conn, :show, podcast.id)},
       "id" => podcast.id,
       "attributes" => %{
         "feed-url" => podcast.feed_url,
@@ -163,12 +163,12 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "podcast" => %{
             "links" => %{
-              "related" => episode_related_podcast_url(conn, :related_podcast, new_episode)
+              "related" => episode_related_podcast_path(conn, :related_podcast, new_episode)
             },
             "data" => %{"type" => "podcasts", "id" => new_episode.podcast.id}
           }
         },
-        "links" => %{"self" => episode_url(conn, :show, new_episode.id)},
+        "links" => %{"self" => episode_path(conn, :show, new_episode.id)},
         "id" => new_episode.id,
         "attributes" => %{
           "link" => new_episode.link,
@@ -182,12 +182,12 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "podcast" => %{
             "links" => %{
-              "related" => episode_related_podcast_url(conn, :related_podcast, old_episode)
+              "related" => episode_related_podcast_path(conn, :related_podcast, old_episode)
             },
             "data" => %{"type" => "podcasts", "id" => old_episode.podcast.id}
           }
         },
-        "links" => %{"self" => episode_url(conn, :show, old_episode.id)},
+        "links" => %{"self" => episode_path(conn, :show, old_episode.id)},
         "id" => old_episode.id,
         "attributes" => %{
           "link" => old_episode.link,
@@ -201,12 +201,12 @@ defmodule Opencast.PodcastControllerTest do
         "relationships" => %{
           "podcast" => %{
             "links" => %{
-              "related" => episode_related_podcast_url(conn, :related_podcast, oldest_episode)
+              "related" => episode_related_podcast_path(conn, :related_podcast, oldest_episode)
             },
             "data" => %{"type" => "podcasts", "id" => oldest_episode.podcast.id}
           }
         },
-        "links" => %{"self" => episode_url(conn, :show, oldest_episode.id)},
+        "links" => %{"self" => episode_path(conn, :show, oldest_episode.id)},
         "id" => oldest_episode.id,
         "attributes" => %{
           "link" => oldest_episode.link,
