@@ -1,12 +1,23 @@
 ---
 env:
   - MIX_ENV=test
+
 language: elixir
+
 elixir:
-  - 1.3.2
+  - 1.8
+
+otp_release: "21.1"
+
 addons:
   postgresql: "9.4"
+
+services:
+  - postgresql
+
 before_script:
   - cp config/travis.exs config/test.exs
-  - mix do ecto.create, ecto.migrate
+  - mix ecto.create
+  - mix ecto.migrate
+
 script: mix coveralls.travis

@@ -13,6 +13,7 @@ config :logger, level: :warn
 config :opencast, Opencast.Repo,
   adapter: Ecto.Adapters.Postgres,
   user: "postgres",
+  password: "",
   database: "opencast_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
