@@ -11,7 +11,10 @@ defmodule Opencast.PodcastController do
     podcasts =
       Podcast
       |> Opencast.PodcastQuery.filter(params)
-      |> Repo.paginate(Map.get(params, "page", %{}))
+      |> Repo.paginate(%{
+        page: get_in(params, ["page", "number"]),
+        page_size: get_in(params, ["page", "size"])
+      })
 
     render(conn, "index.json-api", data: podcasts)
   end

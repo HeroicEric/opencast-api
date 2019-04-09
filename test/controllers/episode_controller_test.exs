@@ -76,16 +76,16 @@ defmodule Opencast.EpisodeControllerTest do
     podcast = insert(:podcast)
     insert_list(5, :episode, podcast: podcast)
 
-    conn = get conn, episode_path(conn, :index, page: %{"page" => 2, "page-size" => 1})
+    conn = get conn, episode_path(conn, :index, %{"page" => %{"number" => 2, "size" => 1}})
     response = json_response(conn, 200)
 
     assert length(response["data"]) == 1
     assert response["links"] == %{
-      "self" => episode_path(conn, :index, page: %{"page" => 2, "page-size" => 1}),
-      "prev" => episode_path(conn, :index, page: %{"page" => 1, "page-size" => 1}),
-      "next" => episode_path(conn, :index, page: %{"page" => 3, "page-size" => 1}),
-      "last" => episode_path(conn, :index, page: %{"page" => 5, "page-size" => 1}),
-      "first" => episode_path(conn, :index, page: %{"page" => 1, "page-size" => 1})
+      "self" => episode_path(conn, :index, %{"page" => %{"number" => 2, "size" => 1}}),
+      "prev" => episode_path(conn, :index, %{"page" => %{"number" => 1, "size" => 1}}),
+      "next" => episode_path(conn, :index, %{"page" => %{"number" => 3, "size" => 1}}),
+      "last" => episode_path(conn, :index, %{"page" => %{"number" => 5, "size" => 1}}),
+      "first" => episode_path(conn, :index, %{"page" => %{"number" => 1, "size" => 1}})
     }
   end
 
