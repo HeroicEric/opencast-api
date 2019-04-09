@@ -50,7 +50,7 @@ defmodule Opencast.Mixfile do
       {:phoenix_ecto, "~> 3.0-rc"},
       {:postgrex, ">= 0.11.1"},
       {:gettext, "~> 0.9"},
-      {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 1.0"},
       {:ja_serializer, "~> 0.13.0"},
       {:ex_machina, "~> 1.0.2"},
       {:sweet_xml, "~> 0.6.6"},
