@@ -45,7 +45,7 @@ defmodule Opencast.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.2.0"},
+      {:phoenix, "~> 1.4.3"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.0-rc"},
       {:postgrex, ">= 0.11.1"},
