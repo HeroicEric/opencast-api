@@ -53,7 +53,7 @@ defmodule Opencast.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ja_serializer, "~> 0.11.0"},
       {:ex_machina, "~> 1.0.2"},
-      {:sweet_xml, "~> 0.5.0"},
+      {:sweet_xml, "~> 0.6.6"},
       {:excoveralls, "~> 0.6", only: :test},
       {:scrivener, "~> 2.0"},
       {:scrivener_ecto, "~> 1.0"},
