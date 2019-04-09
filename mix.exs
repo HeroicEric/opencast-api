@@ -58,7 +58,7 @@ defmodule Opencast.Mixfile do
       {:scrivener, "~> 2.0"},
       {:scrivener_ecto, "~> 1.0"},
       {:redix, "~> 0.4.0"},
-      {:html_sanitize_ex, "~> 1.0.1"}
+      {:html_sanitize_ex, "~> 1.3.0"}
     ]
   end
 
