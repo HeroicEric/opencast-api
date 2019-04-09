@@ -33,7 +33,7 @@ config :phoenix, :generators,
 config :phoenix, :format_encoders, "json-api": Poison
 
 # Configure plug to handle JSON API mime type
-config :mime, :type, %{"application/vnd.api+json" => ["json-api"]}
+config :mime, :types, %{"application/vnd.api+json" => ["json-api"]}
 
 config :redix,
   redis_url: System.get_env("REDIS_URL") || "redis://localhost:6379"

@@ -77,16 +77,16 @@ defmodule Opencast.PodcastControllerTest do
   test "index: is paginated", %{conn: conn} do
     insert_list(5, :podcast)
 
-    conn = get conn, podcast_path(conn, :index, page: %{"page" => 2, "page-size" => 1})
+    conn = get conn, podcast_path(conn, :index, %{"page" => %{"number" => 2, "size" => 1}})
     response = json_response(conn, 200)
 
     assert length(response["data"]) == 1
     assert response["links"] == %{
-      "self" => podcast_path(conn, :index, page: %{"page" => 2, "page-size" => 1}),
-      "prev" => podcast_path(conn, :index, page: %{"page" => 1, "page-size" => 1}),
-      "next" => podcast_path(conn, :index, page: %{"page" => 3, "page-size" => 1}),
-      "last" => podcast_path(conn, :index, page: %{"page" => 5, "page-size" => 1}),
-      "first" => podcast_path(conn, :index, page: %{"page" => 1, "page-size" => 1})
+      "self" => podcast_path(conn, :index, %{"page" => %{"number" => 2, "size" => 1}}),
+      "prev" => podcast_path(conn, :index, %{"page" => %{"number" => 1, "size" => 1}}),
+      "next" => podcast_path(conn, :index, %{"page" => %{"number" => 3, "size" => 1}}),
+      "last" => podcast_path(conn, :index, %{"page" => %{"number" => 5, "size" => 1}}),
+      "first" => podcast_path(conn, :index, %{"page" => %{"number" => 1, "size" => 1}})
     }
   end
 
@@ -95,7 +95,7 @@ defmodule Opencast.PodcastControllerTest do
     insert(:podcast, %{title: "Lentil Soup"})
     insert(:podcast, %{title: "Bear Attack"})
 
-    conn = get conn, podcast_path(conn, :index, filter: %{"query" => "soup"})
+    conn = get conn, podcast_path(conn, :index, %{"filter" => %{"query" => "soup"}})
     response = json_response(conn, 200)
 
     titles = Enum.map(response["data"], fn(podcast) ->
