@@ -57,7 +57,7 @@ defmodule Opencast.Mixfile do
       {:excoveralls, "~> 0.6", only: :test},
       {:scrivener, "~> 2.0"},
       {:scrivener_ecto, "~> 1.0"},
-      {:redix, "~> 0.4.0"},
+      {:redix, "~> 0.10.0"},
       {:html_sanitize_ex, "~> 1.3.0"}
     ]
   end
