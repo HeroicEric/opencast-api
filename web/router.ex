@@ -18,18 +18,4 @@ defmodule Opencast.Router do
       get "/episodes", PodcastController, :related_episodes, as: :related_episodes
     end
   end
-
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
-
-  scope "/", Opencast do
-    pipe_through :browser
-
-    get "/*path", PageController, :index
-  end
 end

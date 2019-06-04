@@ -10,9 +10,7 @@ defmodule Opencast do
       # Start the endpoint when the application starts
       supervisor(Opencast.Endpoint, []),
       # Start the Ecto repository
-      worker(Opencast.Repo, []),
-      # Start global Redix (Redis) instance
-      worker(Redix, [Application.get_env(:redix, :redis_url), [name: :redix]])
+      worker(Opencast.Repo, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

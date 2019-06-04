@@ -30,8 +30,7 @@ defmodule Opencast.Mixfile do
         :phoenix_ecto,
         :postgrex,
         :ja_serializer,
-        :ex_machina,
-        :redix
+        :ex_machina
       ]
     ]
   end
