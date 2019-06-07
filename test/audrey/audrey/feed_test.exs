@@ -23,10 +23,11 @@ defmodule Audrey.RSS.FeedTest do
 
   test "parse/1: parses the items" do
     result = feed_xml_basic() |> parse()
+
     assert result.items == [
-      %Audrey.Item{title: "Ember"},
-      %Audrey.Item{title: "Angular"},
-      %Audrey.Item{title: "React"}
-    ]
+             %Audrey.Item{title: "Ember"},
+             %Audrey.Item{title: "Angular"},
+             %Audrey.Item{title: "React"}
+           ]
   end
 end

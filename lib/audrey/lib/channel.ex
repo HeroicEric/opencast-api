@@ -26,6 +26,6 @@ defmodule Audrey.Channel do
   end
 
   defp parse_image(xml) do
-    xml |> xpath(~x"./image") |> Audrey.Image.parse
+    xml |> xpath(~x"./image") |> Audrey.Image.parse()
   end
 end

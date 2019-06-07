@@ -10,7 +10,7 @@ defmodule Opencast.Repo.Migrations.CreatePodcast do
       add :link, :string, null: false
       add :title, :string, null: false
 
-      timestamps
+      timestamps(type: :utc_datetime_usec)
     end
 
     create unique_index(:podcasts, [:feed_url])
