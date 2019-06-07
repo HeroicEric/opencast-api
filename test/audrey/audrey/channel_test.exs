@@ -38,10 +38,11 @@ defmodule Audrey.ChannelTest do
 
   test "parse/1: parses the image" do
     channel = channel_xml_basic |> parse
+
     assert channel.image == %Audrey.Image{
-      url: "https://emberweekend.com/tomster.png",
-      title: "Ember Weekend",
-      link: "https://emberweekend.com"
-    }
+             url: "https://emberweekend.com/tomster.png",
+             title: "Ember Weekend",
+             link: "https://emberweekend.com"
+           }
   end
 end
