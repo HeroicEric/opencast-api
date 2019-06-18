@@ -31,6 +31,8 @@ config :phoenix, :format_encoders, "json-api": Jason
 # Configure plug to handle JSON API mime type
 config :mime, :types, %{"application/vnd.api+json" => ["json-api"]}
 
+config :tesla, adapter: Tesla.Adapter.Hackney
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

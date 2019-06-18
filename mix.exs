@@ -44,6 +44,7 @@ defmodule Opencast.Mixfile do
       {:ex_machina, "~> 2.3"},
       {:excoveralls, "~> 0.6", only: :test},
       {:gettext, "~> 0.11"},
+      {:hackney, "~> 1.15.1"},
       {:html_sanitize_ex, "~> 1.3.0"},
       {:ja_serializer, "~> 0.15.0"},
       {:jason, "~> 1.0"},
@@ -56,7 +57,9 @@ defmodule Opencast.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:scrivener, "~> 2.0"},
       {:scrivener_ecto, "~> 2.0"},
-      {:sweet_xml, "~> 0.6.6"}
+      {:sweet_xml, "~> 0.6.6"},
+      {:tesla, "~> 1.2.1"},
+      {:timex, "~> 3.5"}
     ]
   end
 
