@@ -37,6 +37,8 @@ defmodule OpencastWeb.API.V1.PodcastController do
           preload: [:podcast]
       )
 
-    render(conn, EpisodeView, "index.json-api", data: episodes)
+    conn
+    |> put_view(EpisodeView)
+    |> render("index.json-api", data: episodes)
   end
 end

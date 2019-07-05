@@ -1,6 +1,7 @@
 defmodule Audrey.Channel do
   import SweetXml
-  import Audrey.Util, only: [format_value: 1]
+
+  alias Audrey.Util
 
   defstruct [:title, :link, :description, :image]
 
@@ -18,11 +19,11 @@ defmodule Audrey.Channel do
   end
 
   defp parse_link(xml) do
-    xml |> xpath(~x"./link/text()"s) |> format_value
+    xml |> xpath(~x"./link/text()"s) |> Util.format_value()
   end
 
   defp parse_description(xml) do
-    xml |> xpath(~x"./description/text()"s) |> format_value
+    xml |> xpath(~x"./description/text()"s) |> Util.format_value()
   end
 
   defp parse_image(xml) do

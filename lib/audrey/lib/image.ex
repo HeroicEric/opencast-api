@@ -1,6 +1,7 @@
 defmodule Audrey.Image do
   import SweetXml
-  import Audrey.Util, only: [format_value: 1]
+
+  alias Audrey.Util
 
   defstruct [:url, :title, :link]
 
@@ -15,14 +16,14 @@ defmodule Audrey.Image do
   end
 
   defp parse_url(xml) do
-    xml |> xpath(~x"./url/text()"s) |> format_value
+    xml |> xpath(~x"./url/text()"s) |> Util.format_value()
   end
 
   defp parse_title(xml) do
-    xml |> xpath(~x"./title/text()"s) |> format_value
+    xml |> xpath(~x"./title/text()"s) |> Util.format_value()
   end
 
   defp parse_link(xml) do
-    xml |> xpath(~x"./link/text()"s) |> format_value
+    xml |> xpath(~x"./link/text()"s) |> Util.format_value()
   end
 end

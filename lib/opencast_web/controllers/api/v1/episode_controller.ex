@@ -36,6 +36,8 @@ defmodule OpencastWeb.API.V1.EpisodeController do
       )
       |> Repo.one()
 
-    render(conn, PodcastView, "show.json-api", data: podcast)
+    conn
+    |> put_view(PodcastView)
+    |> render("show.json-api", data: podcast)
   end
 end

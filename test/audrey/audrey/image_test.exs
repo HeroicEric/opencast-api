@@ -1,30 +1,28 @@
 defmodule Audrey.ImageTest do
   use ExUnit.Case, async: true
 
-  import Audrey.Image
+  alias Audrey.Image
 
-  def image_xml_basic do
-    """
+  @image_xml_basic """
     <image>
       <url>https://emberweekend.com/tomster.png</url>
       <title>Ember Weekend</title>
       <link>https://emberweekend.com</link>
     </image>
-    """
-  end
+  """
 
   test "parses the title" do
-    channel = image_xml_basic |> parse
-    assert channel.title == "Ember Weekend"
+    %Image{title: title} = Image.parse(@image_xml_basic)
+    assert title == "Ember Weekend"
   end
 
   test "parses the url " do
-    channel = image_xml_basic |> parse
-    assert channel.url == "https://emberweekend.com/tomster.png"
+    %Image{url: url} = Image.parse(@image_xml_basic)
+    assert url == "https://emberweekend.com/tomster.png"
   end
 
   test "parses the link" do
-    channel = image_xml_basic |> parse
-    assert channel.link == "https://emberweekend.com"
+    %Image{link: link} = Image.parse(@image_xml_basic)
+    assert link == "https://emberweekend.com"
   end
 end

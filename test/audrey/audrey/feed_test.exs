@@ -1,10 +1,10 @@
 defmodule Audrey.RSS.FeedTest do
   use ExUnit.Case, async: true
 
-  import Audrey.Feed
+  alias Audrey.Channel
+  alias Audrey.Feed
 
-  def feed_xml_basic do
-    """
+  @feed_xml_basic """
     <rss>
       <channel>
         <title>Ember Weekend</title>
@@ -13,18 +13,17 @@ defmodule Audrey.RSS.FeedTest do
         <item><title>React</title></item>
       </channel>
     </rss>
-    """
-  end
+  """
 
   test "parse/1: parses the channel" do
-    result = feed_xml_basic() |> parse()
-    assert result.channel == %Audrey.Channel{title: "Ember Weekend"}
+    %Feed{channel: %Channel{} = channel} = Feed.parse(@feed_xml_basic)
+    assert channel.title == "Ember Weekend"
   end
 
   test "parse/1: parses the items" do
-    result = feed_xml_basic() |> parse()
+    %Feed{items: items} = Feed.parse(@feed_xml_basic)
 
-    assert result.items == [
+    assert items == [
              %Audrey.Item{title: "Ember"},
              %Audrey.Item{title: "Angular"},
              %Audrey.Item{title: "React"}
