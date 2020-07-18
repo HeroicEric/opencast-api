@@ -44,7 +44,7 @@ defmodule Opencast.Mixfile do
       {:ex_machina, "~> 2.3"},
       {:excoveralls, "~> 0.6", only: :test},
       {:gettext, "~> 0.11"},
-      {:html_sanitize_ex, "~> 1.3.0"},
+      {:html_sanitize_ex, "~> 1.4.1"},
       {:ja_serializer, "~> 0.15.0"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.4.6"},
